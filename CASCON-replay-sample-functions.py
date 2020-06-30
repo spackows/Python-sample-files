@@ -20,5 +20,23 @@ def analyzeSampleMessages( questions_problems_text, nlu, Features, KeywordsOptio
     return results_list;
 
 
+def plotWordCloud( results_list, WordCloud, plt ):
+    actions_str  = ""
+    keywords_str = ""
+    for result in results_list:
+        if( len(result["actions"]) > 0 ):
+            actions_str += ' '.join(result["actions"]) + " "
+        if( len(result["keywords"]) > 0 ):
+            keywords_str += ' '.join(result["keywords"]) + " "
+    wordcloud_actions = WordCloud().generate( actions_str )
+    wordcloud_keywords = WordCloud().generate( keywords_str )
+    fig, axs = plt.subplots( 1, 2, figsize=( 20, 10 ) )
+    axs[0].imshow( wordcloud_actions )
+    axs[0].set_title( "Actions", fontsize=20 )
+    axs[0].axis( "off" )
+    axs[1].imshow( wordcloud_actions )
+    axs[1].set_title( "Keywords", fontsize=20 )
+    axs[1].axis( "off" )
+
 
 
