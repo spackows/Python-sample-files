@@ -121,7 +121,7 @@ def plotAllCharts( default_results_list, custom_results_list ):
     plt.show()
 
 
-def compareResults( default_result, custom_result ):
+def compareResults( text, default_result, custom_result ):
     print( 'Text: "' + text + '"' + "\n" )
 
     default_keywords = []
