@@ -108,13 +108,13 @@ def plotAllCharts( default_results_list, custom_results_list ):
         entity = default_entities[i]
         axs[i,0].bar( entity["positions"], entity["values"], color=entity["colours"], edgecolor="black" )
         axs[i,0].set_title( entity["title"],  fontsize=20 )
-        plt.sca( axs[i] )
+        plt.sca( axs[i,0] )
         plt.xticks( entity["positions"], entity["labels"], fontsize=13 )
     for i in range( 0, 3 ):
         entity = custom_entities[i]
         axs[i,1].bar( entity["positions"], entity["values"], color=entity["colours"], edgecolor="black" )
         axs[i,1].set_title( entity["title"],  fontsize=20 )
-        plt.sca( axs[i] )
+        plt.sca( axs[i,1] )
         plt.xticks( entity["positions"], entity["labels"], fontsize=13 )
     axs[2,0].axis('off')
     fig.tight_layout()
@@ -123,7 +123,6 @@ def plotAllCharts( default_results_list, custom_results_list ):
 
 def compareResults( text, default_result, custom_result ):
     print( 'Text: "' + text + '"' + "\n" )
-
     default_keywords = []
     for keyword in default_result["keywords"]:
         default_keywords.append( keyword["text"] )
@@ -144,7 +143,7 @@ def compareResults( text, default_result, custom_result ):
     print( "Custom technology: " + "[ '" + "', '".join( custom_result_entities["tech"] ) + "' ]" )
 
 
-def analyzeSampleMessages_Custom( questions_problems_text, nlu ):
+def analyzeSampleMessages_Custom( questions_problems_text, nlu, custom_model_id ):
     results_list = []
     for message in questions_problems_text:
         result = nlu.analyze( text=message, features=Features( entities=EntitiesOptions( model=custom_model_id ) ) ).get_result()
