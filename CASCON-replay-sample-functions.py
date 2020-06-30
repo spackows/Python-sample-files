@@ -1,7 +1,6 @@
 
 
-def analyzeSampleMessages( questions_problems_text, nlu ):
-    from ibm_watson.natural_language_understanding_v1 import Features, ConceptsOptions, EmotionOptions, EntitiesOptions, KeywordsOptions, SemanticRolesOptions, SentimentOptions, CategoriesOptions, SyntaxOptions, SyntaxOptionsTokens
+def analyzeSampleMessages( questions_problems_text, nlu, Features, KeywordsOptions, SemanticRolesOptions ):
     results_list = []
     for message in questions_problems_text:
         result = nlu.analyze( text=message, features=Features( keywords=KeywordsOptions(), semantic_roles=SemanticRolesOptions() ) ).get_result()
