@@ -1,10 +1,14 @@
+from ibm_watson.natural_language_understanding_v1 import Features, ConceptsOptions, EmotionOptions, EntitiesOptions, KeywordsOptions, SemanticRolesOptions, SentimentOptions, CategoriesOptions, SyntaxOptions, SyntaxOptionsTokens
+from wordcloud import WordCloud
+from wordcloud import STOPWORDS
+import matplotlib.pyplot as plt
 from collections import OrderedDict
 import random
 from matplotlib import colors as mcolors
 import numpy as np
 
 
-def analyzeSampleMessages( questions_problems_text, nlu, Features, KeywordsOptions, SemanticRolesOptions ):
+def analyzeSampleMessages( questions_problems_text, nlu ):
     results_list = []
     for message in questions_problems_text:
         result = nlu.analyze( text=message, features=Features( keywords=KeywordsOptions(), semantic_roles=SemanticRolesOptions() ) ).get_result()
@@ -24,7 +28,7 @@ def analyzeSampleMessages( questions_problems_text, nlu, Features, KeywordsOptio
     return results_list;
 
 
-def plotWordCloud( results_list, WordCloud, plt, STOPWORDS ):
+def plotWordCloud( results_list ):
     actions_str  = ""
     keywords_str = ""
     for result in results_list:
