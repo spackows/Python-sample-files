@@ -46,7 +46,7 @@ def plotWordCloud( results_list ):
     axs[0].imshow( wordcloud_actions )
     axs[0].set_title( "Actions", fontsize=20 )
     axs[0].axis( "off" )
-    axs[1].imshow( wordcloud_actions )
+    axs[1].imshow( wordcloud_keywords )
     axs[1].set_title( "Keywords", fontsize=20 )
     axs[1].axis( "off" )
     plt.show()
